@@ -6,8 +6,8 @@ jobs:
   test-windows-baremetal:
     name: test baremetal
     runs-on: [self-hosted, windows, x64]
-  steps:
-  - uses: actions/checkout@v1
-  - name: print
-    run: echo "hello"
-    shell: bash
+    steps:
+      - uses: actions/checkout@v1
+      - name: print
+        run: echo "hello"
+        shell: bash
