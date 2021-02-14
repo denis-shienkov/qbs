@@ -10,6 +10,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Setup origin Qbs toolchain
       run: |
+        ${QBS_ORIG_PATH}/qbs config --unset profiles
         ${QBS_ORIG_PATH}/qbs setup-toolchains --type mingw ${MINGW_ORIG_PATH}/g++.exe mingw-orig
         ${QBS_ORIG_PATH}/qbs setup-qt ${QT_ORIG_PATH}/qmake.exe qt-orig
         ${QBS_ORIG_PATH}/qbs config profiles.qt-orig.baseProfile mingw-orig
@@ -17,5 +18,5 @@ jobs:
       shell: bash
     - name: Build target Qbs
       run: |
-        ${QBS_ORIG_PATH}/qbs resolve profile:mingw-orig config:release project.withDocumentation:false
+        ${QBS_ORIG_PATH}/qbs resolve profile:qt-orig config:release project.withDocumentation:false
       shell: bash
