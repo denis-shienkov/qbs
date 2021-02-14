@@ -11,10 +11,10 @@ jobs:
     - name: Setup origin Qbs build toolchain
       run: |
         ${QBS_ORIG_PATH}/qbs setup-toolchains --type mingw ${MINGW_ORIG_PATH}/g++.exe mingw-orig
-        ${QBS_ORIG_PATH}/qbs setup-qt ${QT_ORIG_PATH}/qmake.exe qt-orig
+        ${QBS_ORIG_PATH}/qbs setup-qt --type mingw ${QT_ORIG_PATH}/qmake.exe mingw-orig
         ${QBS_ORIG_PATH}/qbs config --list profiles
       shell: bash
     - name: Build target Qbs
       run: |
-        ${QBS_ORIG_PATH}/qbs resolve profile:qt-orig config:release project.withDocumentation:false
+        ${QBS_ORIG_PATH}/qbs resolve profile:mingw-orig config:release project.withDocumentation:false
       shell: bash
