@@ -9,5 +9,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Setup build Qbs toolchain
-      run: ${QBS_ORIG_PATH}/qbs setup-toolchains --type mingw ${MINGW_ORIG_PATH}/g++.exe mingw
+      run: |
+        ${QBS_ORIG_PATH}/qbs setup-toolchains --type mingw ${MINGW_ORIG_PATH}/g++.exe mingw-orig
+        ${QBS_ORIG_PATH}/qbs setup-qt C:/Qt/5.15.2/mingw81_64/bin/qmake.exe qt-orig
+        ${QBS_ORIG_PATH}/qbs config --list profiles
       shell: bash
