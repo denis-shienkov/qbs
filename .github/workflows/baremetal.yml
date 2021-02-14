@@ -7,7 +7,6 @@ jobs:
     name: Build Qbs with Qbs using MinGW
     runs-on: [self-hosted, windows, x64]
     steps:
-    - name: Checkout Qbs
     - uses: actions/checkout@v1
     - name: Setup build Qbs toolchain
       run: C:/Qt/Tools/QtCreator/bin/qbs-setup-toolchains C:/Qt/Tools/mingw810_64/bin/g++ mingw
