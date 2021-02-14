@@ -11,7 +11,8 @@ jobs:
     - name: Setup origin Qbs toolchain
       run: |
         ${QBS_ORIG_PATH}/qbs setup-toolchains --type mingw ${MINGW_ORIG_PATH}/g++.exe mingw-orig
-        ${QBS_ORIG_PATH}/qbs setup-qt ${QT_ORIG_PATH}/qmake.exe mingw-orig
+        ${QBS_ORIG_PATH}/qbs setup-qt ${QT_ORIG_PATH}/qmake.exe qt-orig
+        ${QBS_ORIG_PATH}/qbs config profiles.qt-orig.baseProfile mingw-orig
         ${QBS_ORIG_PATH}/qbs config --list
       shell: bash
     - name: Build target Qbs
