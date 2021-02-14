@@ -19,4 +19,5 @@ jobs:
     - name: Build target Qbs
       run: |
         ${QBS_ORIG_PATH}/qbs resolve profile:qt-orig config:release project.withDocumentation:false
+        ${QBS_ORIG_PATH}/qbs build profile:qt-orig config:release project.withDocumentation:false
       shell: bash
