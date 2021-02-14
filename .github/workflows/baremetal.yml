@@ -3,11 +3,14 @@ name: Build and test Qbs for Baremetal on Windows
 on: [push]
 
 jobs:
-  test-windows-baremetal:
-    name: test baremetal
+  build-qbs-with-qbs-using-mingw:
+    name: Build Qbs with Qbs using MinGW
     runs-on: [self-hosted, windows, x64]
     steps:
+      - name: Checkout Qbs
       - uses: actions/checkout@v1
-      - name: print
-        run: echo "hello"
+      - name: Setup build Qbs toolchain
+        run: |
+          C:/Qt/Tools/QtCreator/bin/qbs-setup-toolchains C:/Qt/Tools/mingw810_64/bin/g++ mingw
+          C:/Qt/Tools/QtCreator/bin/qbs-config --list profiles
         shell: bash
