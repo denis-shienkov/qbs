@@ -30,7 +30,7 @@ jobs:
 #    needs: build-qbs-with-qbs-using-mingw
     steps:
     - name: Update PATH
-      run: echo "${QT_ORIG_PATH}:${MINGW_ORIG_PATH}:${PWD}/release/install-root/usr/local/bin" >> $GITHUB_PATH
+      run: echo "${QT_ORIG_PATH}:${MINGW_ORIG_PATH}:${PWD}/release/install-root/bin" >> $GITHUB_PATH
       shell: bash
     - name: Detect toolchains
       run: |
