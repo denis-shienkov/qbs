@@ -27,7 +27,7 @@ jobs:
     name: Run Baremetal tests on Windows
     runs-on: [self-hosted, windows, x64]
     timeout-minutes: 10
-    needs: build-qbs-with-qbs-using-mingw
+#    needs: build-qbs-with-qbs-using-mingw
     steps:
     - name: Setup target Qbs run environment
       run: |
