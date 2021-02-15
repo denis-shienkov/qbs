@@ -6,6 +6,7 @@ jobs:
   build-qbs-with-qbs-using-mingw:
     name: Build Qbs with Qbs using MinGW
     runs-on: [self-hosted, windows, x64]
+    timeout-minutes: 30
     steps:
     - uses: actions/checkout@v1
     - name: Setup origin Qbs toolchain
@@ -20,4 +21,16 @@ jobs:
       run: |
         ${QBS_ORIG_PATH}/qbs resolve profile:qt-orig config:release project.withDocumentation:false
         ${QBS_ORIG_PATH}/qbs build profile:qt-orig config:release project.withDocumentation:false
+      shell: bash
+
+  test-baremetal-windows:
+    name: Run Baremetal tests on Windows
+    runs-on: [self-hosted, windows, x64]
+    timeout-minutes: 10
+    needs: build-qbs-with-qbs-using-mingw
+    steps:
+    - name: Setup target Qbs run environment
+    - run: |
+        set PATH=${QT_ORIG_PATH}:${MINGW_ORIG_PATH}
+        echo ${PATH}
       shell: bash
