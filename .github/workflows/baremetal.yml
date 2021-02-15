@@ -32,6 +32,6 @@ jobs:
     - name: Setup target Qbs run environment
       run: |
         export PATH=${QT_ORIG_PATH}:${MINGW_ORIG_PATH}
-        echo ${PATH}
-        echo ${PWD}
+        echo "Qbs run environment is: ${PATH}"
+        echo "Working directory is: ${PWD}"
       shell: bash
