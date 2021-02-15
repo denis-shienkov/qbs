@@ -35,5 +35,5 @@ jobs:
         echo "Qbs run environment is: ${PATH}"
         cd ${PWD}/release/install-root/bin
         echo "Working directory is: ${PWD}"
-        qbs --version
+        ./qbs --version
       shell: bash
