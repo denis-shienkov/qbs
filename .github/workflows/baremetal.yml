@@ -33,5 +33,6 @@ jobs:
       run: |
         export PATH=${QT_ORIG_PATH}:${MINGW_ORIG_PATH}
         echo "Qbs run environment is: ${PATH}"
+        cd ${PWD}/release/install-root/bin
         echo "Working directory is: ${PWD}"
       shell: bash
