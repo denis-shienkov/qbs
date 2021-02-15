@@ -29,9 +29,8 @@ jobs:
     timeout-minutes: 10
     needs: build-qbs-with-qbs-using-mingw
     steps:
-    - uses: actions/checkout@v1
     - name: Setup target Qbs run environment
-    - run: |
+      run: |
         set PATH=${QT_ORIG_PATH}:${MINGW_ORIG_PATH}
         echo ${PATH}
       shell: bash
