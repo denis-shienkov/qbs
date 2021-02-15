@@ -34,9 +34,9 @@ jobs:
         export PATH=${QT_ORIG_PATH}:${MINGW_ORIG_PATH}
         echo "Qbs run environment is: ${PATH}"
         cd ${PWD}/release/install-root/bin
-        echo "Working directory is: ${PWD}"
       shell: bash
     - name: Setup target Qbs toolchains
       run: |
-        qbs.exe --version
+        echo "Working directory is: ${PWD}"
+        ./qbs.exe --version
       shell: bash
