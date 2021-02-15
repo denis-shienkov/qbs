@@ -32,8 +32,5 @@ jobs:
     - name: Detect target Qbs toolchains
       run: |
         export PATH=${QT_ORIG_PATH}:${MINGW_ORIG_PATH}
-        echo "Qbs run environment is: ${PATH}"
-        cd ${PWD}/release/install-root/bin
-        echo "Working directory is: ${PWD}"
-        ./qbs --version
+        ${PWD}/release/install-root/bin/./qbs setup-toolchains --detect
       shell: bash
