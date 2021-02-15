@@ -28,6 +28,8 @@ jobs:
     runs-on: [self-hosted, windows, x64]
     timeout-minutes: 10
 #    needs: build-qbs-with-qbs-using-mingw
+    env:
+      QBS_TEST_SOURCE_ROOT: 'tests'
     steps:
 #    - name: Update PATH
 #      run: echo "${PWD}/release/install-root/bin" >> $GITHUB_PATH
