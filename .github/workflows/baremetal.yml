@@ -29,8 +29,9 @@ jobs:
     timeout-minutes: 10
 #    needs: build-qbs-with-qbs-using-mingw
     steps:
-    - name: Detect target Qbs toolchains
+    - name: Update PATH
+      run: echo "${QT_ORIG_PATH}:${MINGW_ORIG_PATH}:./release/install-root/usr/local/bin" >> $GITHUB_PATH
+    - name: Detect toolchains
       run: |
-        export PATH=${QT_ORIG_PATH}:${MINGW_ORIG_PATH}
-        ${PWD}/release/install-root/bin/./qbs setup-toolchains --detect
+        qbs setup-toolchains --detect
       shell: bash
