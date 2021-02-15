@@ -29,14 +29,14 @@ jobs:
     timeout-minutes: 10
 #    needs: build-qbs-with-qbs-using-mingw
     steps:
-    - name: Update PATH
-      run: echo "${PWD}/release/install-root/bin" >> $GITHUB_PATH
-      shell: bash
-    - name: Detect toolchains
-      run: |
-        qbs config --unset profiles
-        qbs setup-toolchains --detect
-      shell: bash
+#    - name: Update PATH
+#      run: echo "${PWD}/release/install-root/bin" >> $GITHUB_PATH
+#      shell: bash
+#    - name: Detect toolchains
+#      run: |
+#        qbs config --unset profiles
+#        qbs setup-toolchains --detect
+#      shell: bash
     - name: keil-9_53_0-mcs51
-      run: QBS_AUTOTEST_PROFILE=keil-9_53_0-mcs51 tst_blackbox-baremetal
+      run: QBS_AUTOTEST_PROFILE=keil-9_53_0-mcs51 scripts/test-baremetal.sh release/install-root/bin
       shell: bash
