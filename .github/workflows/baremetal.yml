@@ -33,4 +33,5 @@ jobs:
       run: |
         export PATH=${QT_ORIG_PATH}:${MINGW_ORIG_PATH}
         echo ${PATH}
+        echo ${PWD}
       shell: bash
