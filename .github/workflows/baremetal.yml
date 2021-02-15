@@ -3,25 +3,25 @@ name: Build and test Qbs for Baremetal on Windows
 on: [push]
 
 jobs:
-  build-qbs-with-qbs-using-mingw:
-    name: Build Qbs with Qbs using MinGW
-    runs-on: [self-hosted, windows, x64]
-    timeout-minutes: 30
-    steps:
-    - uses: actions/checkout@v1
-    - name: Setup origin Qbs toolchain
-      run: |
-        ${QBS_ORIG_PATH}/qbs config --unset profiles
-        ${QBS_ORIG_PATH}/qbs setup-toolchains --type mingw ${MINGW_ORIG_PATH}/g++.exe mingw-orig
-        ${QBS_ORIG_PATH}/qbs setup-qt ${QT_ORIG_PATH}/qmake.exe qt-orig
-        ${QBS_ORIG_PATH}/qbs config profiles.qt-orig.baseProfile mingw-orig
-        ${QBS_ORIG_PATH}/qbs config --list
-      shell: bash
-    - name: Build target Qbs
-      run: |
-        ${QBS_ORIG_PATH}/qbs resolve profile:qt-orig config:release project.withDocumentation:false
-        ${QBS_ORIG_PATH}/qbs build profile:qt-orig config:release project.withDocumentation:false
-      shell: bash
+#  build-qbs-with-qbs-using-mingw:
+#    name: Build Qbs with Qbs using MinGW
+#    runs-on: [self-hosted, windows, x64]
+#    timeout-minutes: 30
+#    steps:
+#    - uses: actions/checkout@v1
+#    - name: Setup origin Qbs toolchain
+#      run: |
+#        ${QBS_ORIG_PATH}/qbs config --unset profiles
+#        ${QBS_ORIG_PATH}/qbs setup-toolchains --type mingw ${MINGW_ORIG_PATH}/g++.exe mingw-orig
+#        ${QBS_ORIG_PATH}/qbs setup-qt ${QT_ORIG_PATH}/qmake.exe qt-orig
+#        ${QBS_ORIG_PATH}/qbs config profiles.qt-orig.baseProfile mingw-orig
+#        ${QBS_ORIG_PATH}/qbs config --list
+#      shell: bash
+#    - name: Build target Qbs
+#      run: |
+#        ${QBS_ORIG_PATH}/qbs resolve profile:qt-orig config:release project.withDocumentation:false
+#        ${QBS_ORIG_PATH}/qbs build profile:qt-orig config:release project.withDocumentation:false
+#      shell: bash
 
   test-baremetal-windows:
     name: Run Baremetal tests on Windows
@@ -31,6 +31,6 @@ jobs:
     steps:
     - name: Setup target Qbs run environment
       run: |
-        set PATH=${QT_ORIG_PATH}:${MINGW_ORIG_PATH}
+        export PATH=${QT_ORIG_PATH}:${MINGW_ORIG_PATH}
         echo ${PATH}
       shell: bash
