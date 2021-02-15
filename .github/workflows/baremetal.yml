@@ -36,3 +36,7 @@ jobs:
         cd ${PWD}/release/install-root/bin
         echo "Working directory is: ${PWD}"
       shell: bash
+    - name: Setup target Qbs toolchains
+      run: |
+        qbs.exe --version
+      shell: bash
