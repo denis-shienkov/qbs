@@ -310,6 +310,28 @@ jobs:
     - name: sdcc-3_8_0-hcs8
       run: QBS_AUTOTEST_PROFILE=sdcc-3_8_0-hcs8 docker-compose run focal-baremetal scripts/test-baremetal.sh release/install-root/usr/local/bin
 
+  test-baremetal-windows:
+    name: Run Baremetal tests on self-hosted Windows
+    runs-on: [self-hosted, windows, x64]
+    timeout-minutes: 10
+    needs: build-windows
+    env:
+      QBS_TEST_SOURCE_ROOT: 'tests'
+      QT_ASSUME_STDERR_HAS_CONSOLE: 1
+    steps:
+    - uses: actions/checkout@v1
+    - name: Download artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: qbs-windows-${{ github.run_id }}.zip
+        path: ./
+    - name: Unpack artifact
+      run: mkdir -p release/install-root/ && unzip qbs-windows-${{ github.run_id }}.zip -d release/install-root/
+      shell: bash
+    - name: keil-9_53_0-mcs51
+      run: QBS_AUTOTEST_PROFILE=keil-9_53_0-mcs51 scripts/test-baremetal.sh release/install-root/bin
+      shell: bash
+
   test-macos:
     name: ${{ matrix.config.name }}
     runs-on: macos-latest
